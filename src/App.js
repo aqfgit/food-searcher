@@ -27,7 +27,9 @@ const App = () => {
     });
   };
 
-  const clearResults = () => {};
+  const clearResults = () => {
+    setResults([]);
+  };
 
   return (
     <>
