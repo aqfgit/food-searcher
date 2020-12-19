@@ -50,6 +50,7 @@ const App = () => {
   return (
     <>
       <Wrapper>
+        {console.log(loading)}
         <Header />
         <Main>
           <FoodInput

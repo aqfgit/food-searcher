@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import cssVars from "../config/cssvars";
 
 const Wrapper = styled.div`
@@ -56,6 +56,25 @@ const Calories = styled.span`
   font-weight: 700;
 `;
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const Loader = styled.div`
+  animation: ${rotate} 1s linear infinite;
+  height: 70px;
+  width: 70px;
+  margin: 40px auto;
+  border: 3px dashed #20a39e;
+  border-radius: 50%;
+`;
+
 const FoodResults = (props) => {
   if (props.results == undefined) {
     return null;
@@ -63,7 +82,7 @@ const FoodResults = (props) => {
 
   return (
     <Wrapper>
-      {props.loader ? <p>Loading...</p> : null}
+      {props.loading ? <Loader></Loader> : null}
       <ResultCount>Found {props.results.length} results</ResultCount>
       <List>
         {props.results.map((resultItem) => (
