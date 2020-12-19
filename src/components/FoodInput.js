@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const FoodInput = (props) => {
-  const errorMessage = null;
+  const [isEmpty, setIsEmpty] = useState(false);
+
   return (
     <div>
       <label htmlFor="foodSearch">Food search query</label>
@@ -9,11 +10,24 @@ const FoodInput = (props) => {
         id="foodSearch"
         type="text"
         value={props.foodInputValue}
-        onChange={(e) => props.setFoodInputValue(e.target.value)}
+        onChange={(e) => {
+          props.setFoodInputValue(e.target.value);
+        }}
       />
-      <button onClick={props.searchFood}>Search</button>
+      <button
+        onClick={() => {
+          if (props.foodInputValue.length == 0) {
+            setIsEmpty(true);
+            return;
+          }
+          setIsEmpty(false);
+          props.searchFood();
+        }}
+      >
+        Search
+      </button>
       <button onClick={props.clearResults}>Clear</button>
-      <p>{errorMessage}</p>
+      {isEmpty ? <p>The search box cannot be empty</p> : null}
     </div>
   );
 };

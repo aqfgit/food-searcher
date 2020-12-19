@@ -2,6 +2,11 @@ import React from "react";
 
 const FoodResults = (props) => {
   const errorMessage = null;
+
+  if (props.results == undefined) {
+    return null;
+  }
+
   return (
     <div>
       <p>Found {props.results.length} results</p>
